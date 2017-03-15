@@ -1,0 +1,23 @@
+body {
+    padding-top: 50px;
+}
+
+article.block {
+    display: inline-block;
+    width: 280px;
+    vertical-align: top;
+    padding: 10px;
+}
+
+.starter-template {
+    padding: 40px 15px;
+    text-align: justified;
+}
+
+.button {
+    text-align:center;
+}
+
+.auteur {
+
+}
