@@ -6,7 +6,7 @@
  * and open the template in the editor.
  */
 
-namespace Controleur;
+namespace Controleur\FrontEnd;
 
 use Lib\Controleur;
 use Modele\Article;

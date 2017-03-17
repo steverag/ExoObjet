@@ -15,6 +15,12 @@ namespace Lib;
  */
 class Backend extends Application {
 
+    public function __construct() {
+        $this->layout = 'layout_admin.html.php';
+        $this->name = 'BackEnd';
+        parent::__construct();
+    }
+
     public function run() {
 
 //        var_dump($_SESSION);
@@ -56,11 +62,4 @@ class Backend extends Application {
     }
 
 //
-
-    public
-            function __construct() {
-        $this->layout = 'layout_admin.html.php';
-        parent::__construct();
-    }
-
 }

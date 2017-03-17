@@ -15,10 +15,15 @@ namespace Lib;
  */
 class FrontEnd extends Application {
 
+    public function __construct() {
+        $this->layout = 'layout.html.php';
+        $this->name = 'FrontEnd';
+        parent::__construct();
+    }
+
     public function run() {
-//        echo 'run application';
-//        var_dump($_GET);
-        // Define le method Module
+//        echo 'run Front';
+//      Define le method Module
         if (isset($_GET['module'])) {
             $module = $_GET['module'];
         } else {
@@ -37,11 +42,6 @@ class FrontEnd extends Application {
         $controleur->action($action);
 
 //        $controleur->$method();
-    }
-
-    public function __construct() {
-        $this->layout = 'layout.html.php';
-        parent::__construct();
     }
 
 }

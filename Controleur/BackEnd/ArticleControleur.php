@@ -6,7 +6,7 @@
  * and open the template in the editor.
  */
 
-namespace Controleur;
+namespace Controleur\BackEnd;
 
 /**
  * Description of ArticleControleur

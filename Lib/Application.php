@@ -16,6 +16,7 @@ abstract class Application {
 
     protected $user;
     protected $layout;
+    protected $name;
 
     const ROOT = '/ExoObjet/';
     const REP_IMAGE = '/ExoObjet/Web/images/';
@@ -52,7 +53,7 @@ abstract class Application {
     protected function getControleur($module) {
         // Define le method Module
 
-        $nomControleur = '\Controleur\\' . ucfirst($module) . 'Controleur';
+        $nomControleur = '\Controleur\\' . $this->name . '\\' . ucfirst($module) . 'Controleur';
 
         if (class_exists($nomControleur)) {
             $controleur = new $nomControleur($this);
