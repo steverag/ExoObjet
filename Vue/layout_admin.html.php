@@ -49,41 +49,52 @@
                         <span class="icon-bar"></span>
                         <span class="icon-bar"></span>
                     </button>
-                    <a class="navbar-brand" href="#">Catalogue Back Office</a>
+                    <div id="navbar" class="collapse navbar-collapse">
+                        <a class="navbar-brand" href="#">Catalogue</a>
+
+                        <ul class="nav navbar-nav">
+                            <li class="active"><a href="<?php echo Lib\Application::ROOT ?>blog">Home</a></li>
+
+                            <li><a href="<?php echo \Lib\Application::ROOT ?>Catalogue">Catalogue</a></li>
+                            <li><a href="#contact">Contact</a></li>
+
+                        </ul>
+                    </div>
                 </div>
+                <!------------- Block FERMER SESSION ----------------->
+                <div id="navbar" class="collapse navbar-collapse">
+                    <ul class="nav navbar-nav navbar-right">
+                        <li><a  href="<?php echo Lib\Application::ROOT ?>admin?module=connection&action=logout"><span class="glyphicon glyphicon-remove-circle"></span> Fermer</a></li>
+                    </ul>
+                </div>
+                <!---------------------------------------------------->
 
             </div>
+            <!--/.nav-collapse -->
+
         </nav>
 
-        <div class="container-fluid">
-            <div class="row">
-                <div class="col-sm-3 col-md-2 sidebar">
-                    <ul class="nav nav-sidebar">
-                        <li><a href="#">Blog</a></li>
-                        <li><a href="#">Catalogue Produits</a></li>
-
-                    </ul>
 
 
-                </div><div class="col-sm-9 col-sm-offset-3 col-md-10 col-md-offset-2 main">
+        <div class="col-sm-9 col-sm-offset-3 col-md-10 col-md-offset-2 main">
 
-                    <?php echo $contenu ?>
-                </div>
-
-            </div>
+            <?php echo $contenu ?>
         </div>
-    </div>
 
-    <!-- Bootstrap core JavaScript
-    ================================================== -->
-    <!-- Placed at the end of the document so the pages load faster -->
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
-    <script>window.jQuery || document.write('<script src="../../assets/js/vendor/jquery.min.js"><\/script>')</script>
-    <script src="../../dist/js/bootstrap.min.js"></script>
-    <!-- Just to make our placeholder images work. Don't actually copy the next line! -->
-    <script src="../../assets/js/vendor/holder.min.js"></script>
-    <!-- IE10 viewport hack for Surface/desktop Windows 8 bug -->
-    <script src="../../assets/js/ie10-viewport-bug-workaround.js"></script>
+    </div>
+</div>
+</div>
+
+<!-- Bootstrap core JavaScript
+================================================== -->
+<!-- Placed at the end of the document so the pages load faster -->
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+<script>window.jQuery || document.write('<script src="../../assets/js/vendor/jquery.min.js"><\/script>')</script>
+<script src="../../dist/js/bootstrap.min.js"></script>
+<!-- Just to make our placeholder images work. Don't actually copy the next line! -->
+<script src="../../assets/js/vendor/holder.min.js"></script>
+<!-- IE10 viewport hack for Surface/desktop Windows 8 bug -->
+<script src="../../assets/js/ie10-viewport-bug-workaround.js"></script>
 </body>
 </html>
 

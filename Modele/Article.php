@@ -52,10 +52,16 @@ class Article extends Entity {
     }
 
     public function setTitre($titre) {
+        if (strlen($titre) < 2) {
+            $this->error[] = 'titre invalide';
+        }
         $this->titre = $titre;
     }
 
     public function setContents($contents) {
+        if (strlen($contents) < 5) {
+            $this->error[] = 'Texte trop court';
+        }
         $this->contents = $contents;
     }
 

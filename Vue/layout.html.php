@@ -53,7 +53,8 @@
                         <li><a href="<?php echo \Lib\Application::ROOT ?>Catalogue">Catalogue</a></li>
                         <li><a href="#contact">Contact</a></li>
                     </ul>
-                </div><!--/.nav-collapse -->
+                </div>
+                <!--/.nav-collapse -->
             </div>
         </nav>
 

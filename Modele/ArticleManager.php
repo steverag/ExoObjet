@@ -86,4 +86,23 @@ class ArticleManager extends \Lib\EntityManager {
         return $nbArt;
     }
 
+    public function insertArticle(\Modele\Article $article) {
+        $pdo = $this->pdo;
+        $sql = 'INSERT INTO article (id, titre, slug, contents, date, auteur, image) '
+                . 'VALUES (null, :titre, :slug, :contents, :date, :auteur, :image);';
+        $result = $pdo->prepare($sql);
+        $result->bindValue(':titre', $article->getTitre(), \PDO::PARAM_STR);
+        $result->bindValue(':slug', $article->getSlug(), \PDO::PARAM_STR);
+        $result->bindValue(':contents', $article->getContents(), \PDO::PARAM_STR);
+        $result->bindValue(':date', $article->getDate()->format('Y-m-d h:i:s'), \PDO::PARAM_STR);
+        $result->bindValue(':auteur', $article->getAuteur()->getid(), \PDO::PARAM_INT);
+        $result->bindValue(':image', $article->getImage(), \PDO::PARAM_STR);
+        try {
+            $result->execute();
+            return TRUE;
+        } catch (\PDOException $exc) {
+            return FALSE;
+        }
+    }
+
 }

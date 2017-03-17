@@ -52,6 +52,49 @@ class ArticleControleur extends \Lib\Controleur {
         $this->render('article/article.html.php', ['articles' => $articles, 'nbPage' => $nbPage, 'page' => $page, 'p' => $p]);
     }
 
+    public function addAction() {
+
+//        echo 'addaction';
+
+        var_dump($_POST);
+        var_dump($_FILES);
+
+
+
+
+        if ($_SERVER['REQUEST_METHOD'] == 'POST') {
+            $article = new \Modele\Article($_POST);
+
+            if ($article->getError() != []) {
+                $this->setFlash('Erreur données:<br>- ' . implode('<br>- ', $article->getError()));
+            } else {
+                $article->setSlug(\Modele\Article::slugify($article->getTitre()));
+                $user = $this->app->getUser();
+                $article->setAuteur($user);
+
+                // Once the article object is fully hydrated we can upload the image
+                if ($_FILES['image']['error'] != 4) {
+                    var_dump($_FILES['image']['name']);
+                    $upload = $article->upload(__DIR__ . '/../../Web/images', $_FILES['image']['name']);
+                    var_dump($upload);
+                }
+
+
+                $am = new \Modele\ArticleManager();
+
+                if ($am->insertArticle($article)) {
+                    $this->setFlash('Article enregistré');
+                } else {
+                    $this->setFlash('Erreur BDD');
+                }
+            }
+//            header('Location:'.\Lib\Application::ROOT.'admin?action=article&action=add');
+//            exit;
+        }
+
+        $this->render('article/addArticle.html.php');
+    }
+
     public function editAction() {
         if (isset($_GET['id'])) {
             $am = new \Modele\ArticleManager();

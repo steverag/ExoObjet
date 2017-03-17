@@ -1,12 +1,6 @@
-<!-- ------------- Block FERMER SESSION ------------ -->
-<div class="container col-sm-2 col-sm-offset-10">
-    <p><a class="btn" href="<?php echo Lib\Application::ROOT ?>?module=connection&action=logout"><span class="glyphicon glyphicon-remove-circle"></span> Fermer</a></p>
-</div>
-<!-- ----------------------------------------------- -->
-
-
-
 <h2 class="sub-header">Section title</h2>
+<div>
+    <a class="btn btn-warning" href="<?php echo Lib\Application::ROOT; ?>admin?module=article&action=add">Ajouter</a></div>
 <div class="table-responsive">
     <table class="table table-striped">
         <thead>
@@ -26,7 +20,7 @@
                     <td><?php echo $article->getDate()->format('d-m-Y'); ?></td>
                     <td><?php echo $article->getTitre(); ?></td>     
                     <td><a class="btn btn-info" href="<?php echo Lib\Application::ROOT; ?>admin?module=article&action=edit&id=<?php echo $article->getId(); ?>">Editer</a></td>   
-                    <td><a class="btn btn-warning" href="<?php echo Lib\Application::ROOT; ?>admin?module=article&action=delete&id=<?php echo $article->getId(); ?>">Supprimer</a></td>     
+                    <td><a class="btn btn-danger" href="<?php echo Lib\Application::ROOT; ?>admin?module=article&action=delete&id=<?php echo $article->getId(); ?>">Supprimer</a></td>     
 
 
                 </tr>
