@@ -16,8 +16,51 @@ namespace Lib;
 class Backend extends Application {
 
     public function run() {
-        echo 'Backend<br>';
-        echo password_hash(123, PASSWORD_DEFAULT);
+
+//        var_dump($_SESSION);
+        // Define le method Module
+
+        if ($this->getUser()->isAdmin()) {
+
+            if ($_SESSION['IPAddress'] != sha1($_SERVER['REMOTE_ADDR']) || $_SESSION['userAgent'] != sha1($_SERVER['HTTP_USER_AGENT'])) {
+
+                exit('Erreur d\'authentiaction');
+            }
+            //$module = 'article';
+            if (isset($_GET['module'])) {
+                $module = $_GET['module'];
+            } else {
+                $module = 'article';
+            }
+
+            if (isset($_GET['action'])) {
+                $action = $_GET['action'];
+            } else {
+                $action = 'index';
+            }
+        } else {
+            $module = 'connection';
+            // define the method Action
+            if ($_SERVER['REQUEST_METHOD'] == 'POST') {
+                $action = 'login';
+            } else {
+                $action = 'index';
+            }
+        }
+
+
+
+
+        $connection = $this->getControleur($module);
+        $connection->action($action);
+    }
+
+//
+
+    public
+            function __construct() {
+        $this->layout = 'layout_admin.html.php';
+        parent::__construct();
     }
 
 }

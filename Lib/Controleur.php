@@ -15,6 +15,12 @@ namespace Lib;
  */
 abstract class Controleur {
 
+    protected $app;
+
+    public function __construct($app) {
+        $this->app = $app;
+    }
+
     public function action($action) {
         $method = $action . 'Action';
         if (method_exists($this, $method)) {
@@ -31,7 +37,7 @@ abstract class Controleur {
         \ob_start();
         include __DIR__ . '/../Vue/' . $vue;
         $contenu = \ob_get_clean();
-        include __DIR__ . '/../Vue/layout.html.php';
+        include __DIR__ . '/../Vue/' . $this->app->getLayout();
     }
 
     protected function setFlash($value) {

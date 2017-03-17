@@ -53,4 +53,37 @@ class ArticleManager extends \Lib\EntityManager {
         return $article;
     }
 
+    public function getAllArticles($offset, $limit) {
+        $bdd = $this->pdo;
+        $sql = 'SELECT a.id, a.titre, a.slug, a.contents, a.date, a.image, u.login auteur '
+                . 'FROM article a '
+                . 'INNER JOIN user u '
+                . 'ON a.auteur = u.id '
+                . 'ORDER BY a.id '
+                . 'LIMIT :offset, ' . $limit;
+
+        $result = $this->pdo->prepare($sql);
+        $result->bindValue(':offset', $offset, \PDO::PARAM_INT);
+        $result->setFetchMode(\PDO::FETCH_CLASS | \PDO::FETCH_PROPS_LATE, Article::class);
+        $result->execute();
+        $articles = $result->fetchAll();
+
+        foreach ($articles as $article) {
+
+            $article->setDate($article->getDate());
+        }
+
+        return $articles;
+    }
+
+    public function countArticles() {
+        $bdd = $this->pdo;
+        $sql = 'SELECT COUNT(a.id) NbArt '
+                . 'FROM article a;';
+        $result = $this->pdo->query($sql);
+        $nbArt = $result->fetch();
+
+        return $nbArt;
+    }
+
 }

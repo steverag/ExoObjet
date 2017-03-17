@@ -17,18 +17,18 @@ use Lib\EntityManager;
  */
 class UserManager extends EntityManager {
 
-    public function getUser($login, $pwd) {
+    public function getUserByLogin($login) {
 
         $pdo = $this->pdo;
-        $sql = 'SELECT u.id, u.login, u.password, u.email '
+        $sql = 'SELECT u.id, u.login, u.password, u.email, u.privilege '
                 . 'FROM user u '
-                . 'WHERE u.login = :login '
-                . 'AND u.password = :pwd ';
+                . 'WHERE u.login = :login ';
         $result = $pdo->prepare($sql);
         $result->bindValue(':login', $login, \PDO::PARAM_STR);
-        $result->bindValue(':pwd', $pwd, \PDO::PARAM_STR);
         $result->execute();
         $result->setFetchMode(\PDO::FETCH_CLASS, User::Class);
+        $user = $result->fetch();
+        return $user;
     }
 
 }

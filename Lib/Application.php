@@ -14,10 +14,40 @@ namespace Lib;
  */
 abstract class Application {
 
-    public abstract function run();
+    protected $user;
+    protected $layout;
 
     const ROOT = '/ExoObjet/';
     const REP_IMAGE = '/ExoObjet/Web/images/';
+
+    public function getUser() {
+        return $this->user;
+    }
+
+    public function getLayout() {
+        return $this->layout;
+    }
+
+    public function setUser($user) {
+        $this->user = $user;
+        return $this;
+    }
+
+    public function setLayout($layout) {
+        $this->layout = $layout;
+        return $this;
+    }
+
+    public abstract function run();
+
+    public function __construct() {
+        if (isset($_SESSION['user'])) {
+            $this->user = $_SESSION['user'];
+        } else {
+            $this->user = new \Modele\User();
+        }
+        //var_dump($this->user);
+    }
 
     protected function getControleur($module) {
         // Define le method Module
@@ -25,7 +55,7 @@ abstract class Application {
         $nomControleur = '\Controleur\\' . ucfirst($module) . 'Controleur';
 
         if (class_exists($nomControleur)) {
-            $controleur = new $nomControleur();
+            $controleur = new $nomControleur($this);
 
             return $controleur;
         } else {
