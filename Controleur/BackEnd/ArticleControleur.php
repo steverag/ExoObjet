@@ -74,11 +74,16 @@ class ArticleControleur extends \Lib\Controleur {
 
                 // Once the article object is fully hydrated we can upload the image
                 if ($_FILES['image']['error'] != 4) {
-                    var_dump($_FILES['image']['name']);
-                    $upload = $article->upload(__DIR__ . '/../../Web/images', $_FILES['image']['name']);
+
+                    $upload = $article->upload(__DIR__ . '/../../Web/images', $_FILES['image']);
                     var_dump($upload);
                 }
-
+                if ($upload['upload']) {
+                    $article->setImage($upload['message']);
+                    $article->thumbnail(__DIR__ . '/../../Web/images/' . $article->getImage(), __DIR__ . '/../../Web/images/thumbnails');
+                } else {
+                    $this->setFlash($upload['message']);
+                }
 
                 $am = new \Modele\ArticleManager();
 

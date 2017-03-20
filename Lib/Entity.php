@@ -17,6 +17,7 @@ abstract class Entity {
 
     use \Tools\Extrait;
     use \Tools\Upload;
+    use \Tools\Thumbnail;
 
     protected $id;
 

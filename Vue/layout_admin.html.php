@@ -53,9 +53,9 @@
                         <a class="navbar-brand" href="#">Catalogue</a>
 
                         <ul class="nav navbar-nav">
-                            <li class="active"><a href="<?php echo Lib\Application::ROOT ?>blog">Home</a></li>
+                            <li class="active"><a href="<?php echo Lib\Application::ROOT ?>admin">Articles</a></li>
 
-                            <li><a href="<?php echo \Lib\Application::ROOT ?>Catalogue">Catalogue</a></li>
+                            <li><a href="<?php echo \Lib\Application::ROOT ?>admin/produit">Produits</a></li>
                             <li><a href="#contact">Contact</a></li>
 
                         </ul>

@@ -15,9 +15,7 @@ namespace Tools;
 trait Upload {
 
     function upload($dir, $file) {
-        echo $dir;
-        echo $file;
-        var_dump(is_dir($dir));
+
         $erreur = '';
 // check $dir is exists and is a directory
         if (!is_dir($dir)) {
@@ -57,10 +55,10 @@ trait Upload {
         if (!in_array($types, $typesMime)) {
             return ['upload' => false, 'message' => 'Choisir une image'];
         }
-
+// give a unique name to the file
         $fileName = sha1(uniqid(rand(), true)) . '.' . $extensionAuth;
         $destination = $dir . '/' . $fileName;
-
+// Return true or false depending on whether file upload worked or not
         if (move_uploaded_file($file['tmp_name'], $destination)) {
 
             return ['upload' => true, 'message' => $fileName];

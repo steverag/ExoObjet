@@ -1,6 +1,7 @@
-<h2 class="sub-header">Section title</h2>
+<h2 class="sub-header">Gestion des Articles <small>Page <?php echo $page; ?> sur <?php echo $nbPage; ?></small></h2>
 <div>
-    <a class="btn btn-warning" href="<?php echo Lib\Application::ROOT; ?>admin?module=article&action=add">Ajouter</a></div>
+    <a class="btn btn-warning" href="<?php echo Lib\Application::ROOT; ?>admin?module=article&action=add">Ajouter</a>
+</div>
 <div class="table-responsive">
     <table class="table table-striped">
         <thead>
@@ -19,8 +20,7 @@
                     <td><?php echo $article->getId(); ?></td>
                     <td><?php echo $article->getDate()->format('d-m-Y'); ?></td>
                     <td><?php echo $article->getTitre(); ?></td>     
-                    <td><a class="btn btn-info" href="<?php echo Lib\Application::ROOT; ?>admin?module=article&action=edit&id=<?php echo $article->getId(); ?>">Editer</a></td>   
-                    <td><a class="btn btn-danger" href="<?php echo Lib\Application::ROOT; ?>admin?module=article&action=delete&id=<?php echo $article->getId(); ?>">Supprimer</a></td>     
+                    <td><a class="btn btn-info" href="<?php echo Lib\Application::ROOT; ?>admin?module=article&action=edit&id=<?php echo $article->getId(); ?>">Editer</a> <a class="btn btn-danger" href="<?php echo Lib\Application::ROOT; ?>admin?module=article&action=delete&id=<?php echo $article->getId(); ?>">Supprimer</a></td>     
 
 
                 </tr>
